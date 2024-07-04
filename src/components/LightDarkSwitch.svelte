@@ -20,7 +20,7 @@ const seq: LIGHT_DARK_MODE[] = [
   DARK_MODE,
   AUTO_MODE,
 ]
-let mode: LIGHT_DARK_MODE = LIGHT_MODE
+let mode: LIGHT_DARK_MODE = AUTO_MODE
 
 onMount(() => {
   mode = getStoredTheme()
