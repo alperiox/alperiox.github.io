@@ -184,7 +184,7 @@ import {
 	SizeObserverPlugin,
 	ClickScrollPlugin
 } from 'overlayscrollbars';
-import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
+import {getHue, getStoredTheme, setHue, setTheme, loadPalette} from "../utils/setting-utils";
 
 	/* Preload fonts */
 // (async function() {
@@ -244,6 +244,7 @@ function setClickOutsideToClose(panel: string, ignores: string[]) {
 setClickOutsideToClose("display-setting", ["display-setting", "display-settings-switch"])
 setClickOutsideToClose("nav-menu-panel", ["nav-menu-panel", "nav-menu-switch"])
 setClickOutsideToClose("search-panel", ["search-panel", "search-bar", "search-switch"])
+setClickOutsideToClose("palette-panel", ["palette-panel"])
 
 
 function loadTheme() {
@@ -299,7 +300,7 @@ function init() {
 	// disableAnimation()()		// TODO
 	setBannerHeight();
 	loadTheme();
-	loadHue();
+	loadPalette();
 	initCustomScrollbar();
 }
 

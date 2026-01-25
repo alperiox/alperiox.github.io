@@ -1,5 +1,6 @@
 import {AUTO_MODE, DARK_MODE, DEFAULT_THEME, LIGHT_MODE} from "@constants/constants.ts";
 import type { LIGHT_DARK_MODE } from '@/types/config'
+import { type ColorPalette, DEFAULT_PALETTE_ID, getPaletteById, getDefaultPalette } from '@constants/palettes'
 
 export function getDefaultHue(): number {
   const fallback = '250'
@@ -47,4 +48,39 @@ export function setTheme(theme: LIGHT_DARK_MODE): void {
 
 export function getStoredTheme(): LIGHT_DARK_MODE {
   return localStorage.getItem('theme') as LIGHT_DARK_MODE || DEFAULT_THEME
+}
+
+export function getStoredPaletteId(): string {
+  return localStorage.getItem('palette') || DEFAULT_PALETTE_ID
+}
+
+export function applyPalette(palette: ColorPalette): void {
+  const r = document.querySelector(':root') as HTMLElement
+  if (!r) return
+
+  r.style.setProperty('--hue', String(palette.hue))
+  r.style.setProperty('--hue-secondary', String(palette.hueSecondary))
+  r.style.setProperty('--hue-accent', String(palette.hueAccent))
+  r.style.setProperty('--chroma-boost', String(palette.chromaBoost))
+  r.style.setProperty('--bg-darkness', String(palette.bgDarkness))
+
+  localStorage.setItem('hue', String(palette.hue))
+}
+
+export function setPalette(paletteId: string): void {
+  const palette = getPaletteById(paletteId)
+  if (!palette) return
+
+  localStorage.setItem('palette', paletteId)
+  applyPalette(palette)
+
+  if (palette.forceDark) {
+    setTheme(DARK_MODE)
+  }
+}
+
+export function loadPalette(): void {
+  const paletteId = getStoredPaletteId()
+  const palette = getPaletteById(paletteId) || getDefaultPalette()
+  applyPalette(palette)
 }
