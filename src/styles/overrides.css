@@ -1,0 +1,138 @@
+/* ============================================================
+   alperiox.dev — custom overrides
+   Matches the "after" mockup from fuwari_before_after_mockup.html
+   ============================================================ */
+
+
+/* ── NAVBAR ────────────────────────────────────────────────
+   Glass bar with just logo + links. Hide extras.
+   ---------------------------------------------------------- */
+#navbar,
+nav#navbar {
+  background: rgba(7, 6, 15, 0.42) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 0.5px solid rgba(160, 120, 255, 0.10) !important;
+  box-shadow: none !important;
+}
+
+/* Hide search bar, display settings */
+#search-bar,
+[id*="search-panel"],
+[id*="search-switch"],
+[id*="display-setting"],
+[id*="display-settings-switch"] {
+  display: none !important;
+}
+
+
+/* ── POST / CONTENT CARDS ──────────────────────────────────
+   Purple-tinted glass as in the mockup.
+   ---------------------------------------------------------- */
+.card-base,
+a.card-base {
+  background: rgba(18, 12, 32, 0.52) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 0.5px solid rgba(160, 120, 255, 0.13) !important;
+  box-shadow: none !important;
+}
+
+.card-base:hover,
+a.card-base:hover {
+  border-color: rgba(180, 140, 255, 0.24) !important;
+  background: rgba(22, 14, 40, 0.60) !important;
+}
+
+
+/* ── SIDEBAR ──────────────────────────────────────────────
+   No panel background — content floats on canvas.
+   Muted purple accent colors.
+   ---------------------------------------------------------- */
+#sidebar {
+  --primary: oklch(0.50 0.08 var(--hue));
+}
+
+#sidebar .card-base {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Sidebar headings — muted purple */
+#sidebar .font-bold.text-lg {
+  color: rgba(200, 180, 255, 0.55) !important;
+}
+
+/* Category count badges — purple-tinted pills */
+#sidebar .font-bold.rounded-lg.text-sm {
+  background: rgba(160, 120, 255, 0.16) !important;
+  color: rgba(190, 165, 255, 0.75) !important;
+  border: none !important;
+}
+
+/* Category row text */
+#sidebar .btn-plain {
+  color: rgba(190, 175, 220, 0.7) !important;
+}
+
+
+/* ── TAG CHIPS ─────────────────────────────────────────────
+   Purple-tinted outlined pills matching the mockup.
+   ---------------------------------------------------------- */
+#sidebar .btn-regular {
+  background: rgba(160, 120, 255, 0.08) !important;
+  border: 0.5px solid rgba(160, 120, 255, 0.20) !important;
+  color: rgba(195, 175, 255, 0.65) !important;
+}
+
+#sidebar .btn-regular:hover {
+  background: rgba(160, 120, 255, 0.16) !important;
+  border-color: rgba(180, 150, 255, 0.35) !important;
+  color: rgba(210, 190, 255, 0.85) !important;
+}
+
+/* Global tag styling (archive pages etc) */
+a[href*="/tag/"] {
+  background: rgba(160, 120, 255, 0.08) !important;
+  border: 0.5px solid rgba(160, 120, 255, 0.20) !important;
+  color: rgba(195, 175, 255, 0.65) !important;
+}
+
+a[href*="/tag/"]:hover {
+  background: rgba(160, 120, 255, 0.16) !important;
+  border-color: rgba(180, 150, 255, 0.35) !important;
+  color: rgba(210, 190, 255, 0.85) !important;
+}
+
+
+/* ── FLOAT PANELS ──────────────────────────────────────────
+   Glass panels for dropdowns/popups.
+   ---------------------------------------------------------- */
+.float-panel {
+  background: rgba(12, 8, 24, 0.80) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 0.5px solid rgba(160, 120, 255, 0.12) !important;
+}
+
+
+/* ── FOOTER ────────────────────────────────────────────────*/
+#footer .card-base {
+  background: rgba(12, 8, 24, 0.3) !important;
+  border: 0.5px solid rgba(160, 120, 255, 0.06) !important;
+}
+
+
+/* ── SCROLLBAR ─────────────────────────────────────────────*/
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 120, 255, 0.25);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 140, 255, 0.40);
+}

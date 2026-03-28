@@ -53,10 +53,6 @@
       return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hue')) || 270;
     }
 
-    function isDarkMode(): boolean {
-      return document.documentElement.classList.contains('dark');
-    }
-
     function resize() {
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
@@ -104,14 +100,7 @@
     function draw() {
       if (!running) return;
 
-      // In light mode, clear canvas and keep looping (invisible)
-      if (!isDarkMode()) {
-        ctx.clearRect(0, 0, W, H);
-        animId = requestAnimationFrame(draw);
-        return;
-      }
-
-      const hue = getHue();
+        const hue = getHue();
       t += 0.007;
 
       // Update node positions + coords array

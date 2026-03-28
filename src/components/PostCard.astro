@@ -24,13 +24,13 @@ const formattedDate = published.toISOString().slice(0, 10);
 <a href={url}
    class:list={["card-base block p-6 md:p-8 transition hover:bg-[var(--btn-card-bg-hover)] active:bg-[var(--btn-card-bg-active)]", className]}
    style={style}>
-    <h2 class="font-bold text-xl md:text-2xl text-90 mb-2 transition">
+    <h2 class="font-normal text-xl md:text-2xl text-90 mb-2 transition" style="font-family: 'Georgia', 'Times New Roman', serif; letter-spacing: 0.01em;">
         {title}
     </h2>
-    <p class="text-75 mb-3 text-sm md:text-base transition">
+    <p class="mb-3 text-sm md:text-base transition" style="color: rgba(170, 155, 205, 0.55);">
         {description}
     </p>
-    <div class="text-xs md:text-sm text-black/40 dark:text-white/40 transition">
+    <div class="transition" style="font-family: 'JetBrains Mono Variable', monospace; font-size: 0.75rem; letter-spacing: 0.04em; color: rgba(150, 130, 190, 0.4);">
         {remarkPluginFrontmatter.words} words · {remarkPluginFrontmatter.minutes} min · {formattedDate}
     </div>
 </a>

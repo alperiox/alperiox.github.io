@@ -5,6 +5,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import '@fontsource-variable/jetbrains-mono';
+import '../styles/overrides.css';
 import ImageWrapper from "@components/misc/ImageWrapper.astro";
 
 import {pathsEqual} from "@utils/url-utils";
@@ -104,33 +105,9 @@ const siteLang = siteConfig.lang.replace('_', '-')
 				  media={favicon.theme && `(prefers-color-scheme: ${favicon.theme})`}
 			/>
 		))}
-		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script define:vars={{DEFAULT_THEME: DEFAULT_THEME, LIGHT_MODE: LIGHT_MODE, DARK_MODE: DARK_MODE, AUTO_MODE: AUTO_MODE, PALETTES: PALETTES, DEFAULT_PALETTE_ID: DEFAULT_PALETTE_ID}}>
-			const storedTheme = localStorage.getItem('theme');
-			const paletteId = localStorage.getItem('palette') || DEFAULT_PALETTE_ID;
-			const palette = PALETTES.find(p => p.id === paletteId);
-
-			// If no theme stored and palette requires dark mode, use dark and persist it
-			let theme = storedTheme || DEFAULT_THEME;
-			if (!storedTheme && palette && palette.forceDark) {
-				theme = DARK_MODE;
-				localStorage.setItem('theme', DARK_MODE);
-			}
-
-			switch (theme) {
-				case LIGHT_MODE:
-					document.documentElement.classList.remove('dark');
-					break
-				case DARK_MODE:
-					document.documentElement.classList.add('dark');
-					break
-				case AUTO_MODE:
-					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-						document.documentElement.classList.add('dark');
-					} else {
-						document.documentElement.classList.remove('dark');
-					}
-			}
+		<!-- Always dark mode -->
+		<script>
+			document.documentElement.classList.add('dark');
 		</script>
 
 		<slot name="head"></slot>

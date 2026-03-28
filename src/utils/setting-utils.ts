@@ -23,22 +23,9 @@ export function setHue(hue: number): void {
 }
 
 
-export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
-  switch (theme) {
-    case LIGHT_MODE:
-      document.documentElement.classList.remove('dark')
-      break
-    case DARK_MODE:
-      document.documentElement.classList.add('dark')
-      break
-    case AUTO_MODE:
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-      break
-  }
+export function applyThemeToDocument(_theme: LIGHT_DARK_MODE) {
+  // Always dark mode — the canvas background requires it
+  document.documentElement.classList.add('dark')
 }
 
 export function setTheme(theme: LIGHT_DARK_MODE): void {
