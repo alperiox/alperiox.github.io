@@ -10,19 +10,19 @@ export interface ColorPalette {
   previewColors: string[]
 }
 
-export const DEFAULT_PALETTE_ID = 'default'
+export const DEFAULT_PALETTE_ID = 'synthwave'
 
 export const PALETTES: ColorPalette[] = [
   {
-    id: 'default',
-    name: 'Default',
-    hue: 280,
+    id: 'synthwave',
+    name: 'Synthwave',
+    hue: 330,
     hueSecondary: 280,
-    hueAccent: 280,
-    chromaBoost: 1.0,
-    bgDarkness: 0.16,
-    forceDark: false,
-    previewColors: ['#a855f7', '#c084fc', '#e9d5ff'],
+    hueAccent: 15,
+    chromaBoost: 1.3,
+    bgDarkness: 0.08,
+    forceDark: true,
+    previewColors: ['#ff6b9d', '#c471ed', '#ff6f61'],
   },
   {
     id: 'neon-nights',
@@ -36,48 +36,15 @@ export const PALETTES: ColorPalette[] = [
     previewColors: ['#ff00ff', '#00fff5', '#f0f000'],
   },
   {
-    id: 'synthwave',
-    name: 'Synthwave',
-    hue: 330,
+    id: 'default',
+    name: 'Classic',
+    hue: 280,
     hueSecondary: 280,
-    hueAccent: 15,
-    chromaBoost: 1.3,
-    bgDarkness: 0.08,
-    forceDark: true,
-    previewColors: ['#ff6b9d', '#c471ed', '#ff6f61'],
-  },
-  {
-    id: 'ghost-protocol',
-    name: 'Ghost Protocol',
-    hue: 165,
-    hueSecondary: 15,
-    hueAccent: 210,
-    chromaBoost: 1.2,
-    bgDarkness: 0.07,
-    forceDark: true,
-    previewColors: ['#00d4aa', '#ff7b72', '#58a6ff'],
-  },
-  {
-    id: 'terminal-redux',
-    name: 'Terminal',
-    hue: 120,
-    hueSecondary: 40,
-    hueAccent: 0,
-    chromaBoost: 1.5,
-    bgDarkness: 0.04,
-    forceDark: true,
-    previewColors: ['#00ff41', '#ffb000', '#ff3333'],
-  },
-  {
-    id: 'blade-runner',
-    name: 'Blade Runner',
-    hue: 30,
-    hueSecondary: 330,
-    hueAccent: 200,
-    chromaBoost: 1.2,
-    bgDarkness: 0.10,
-    forceDark: true,
-    previewColors: ['#ff9e64', '#f472b6', '#7dd3fc'],
+    hueAccent: 280,
+    chromaBoost: 1.0,
+    bgDarkness: 0.16,
+    forceDark: false,
+    previewColors: ['#a855f7', '#c084fc', '#e9d5ff'],
   },
 ]
 

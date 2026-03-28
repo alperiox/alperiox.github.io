@@ -48,6 +48,9 @@ importers:
       colorjs.io:
         specifier: ^0.5.0
         version: 0.5.0
+      delaunator:
+        specifier: ^5.1.0
+        version: 5.1.0
       hastscript:
         specifier: ^9.0.0
         version: 9.0.0
@@ -2157,6 +2160,9 @@ packages:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
 
+  delaunator@5.1.0:
+    resolution: {integrity: sha512-AGrQ4QSgssa1NGmWmLPqN5NY2KajF5MqxetNEO+o0n3ZwZZeTmt7bBnvzHWrmkZFxGgr4HdyFgelzgi06otLuQ==}
+
   delegate-it@6.1.0:
     resolution: {integrity: sha512-sPgBvzO3GVViT1qKiuMLKnZs2HokFwCg304kv2bbG08Tm3qi9u5y5jEC7u2dR0js22i+17JTfqK0XpWop9c67w==}
 
@@ -3984,6 +3990,9 @@ packages:
   reusify@1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  robust-predicates@3.0.3:
+    resolution: {integrity: sha512-NS3levdsRIUOmiJ8FZWCP7LG3QpJyrs/TE0Zpf1yvZu8cAJJ6QMW92H1c7kWpdIHo8RvmLxN/o2JXTKHp74lUA==}
 
   rollup-plugin-bundle-size@1.0.3:
     resolution: {integrity: sha512-aWj0Pvzq90fqbI5vN1IvUrlf4utOqy+AERYxwWjegH1G8PzheMnrRIgQ5tkwKVtQMDP0bHZEACW/zLDF+XgfXQ==}
@@ -7130,6 +7139,10 @@ snapshots:
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
 
+  delaunator@5.1.0:
+    dependencies:
+      robust-predicates: 3.0.3
+
   delegate-it@6.1.0:
     dependencies:
       typed-query-selector: 2.11.2
@@ -9348,6 +9361,8 @@ snapshots:
       unified: 10.1.2
 
   reusify@1.0.4: {}
+
+  robust-predicates@3.0.3: {}
 
   rollup-plugin-bundle-size@1.0.3:
     dependencies:

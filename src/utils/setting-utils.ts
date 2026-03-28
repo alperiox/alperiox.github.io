@@ -83,4 +83,10 @@ export function loadPalette(): void {
   const paletteId = getStoredPaletteId()
   const palette = getPaletteById(paletteId) || getDefaultPalette()
   applyPalette(palette)
+
+  // If this is a first visit (no stored theme) and palette requires dark mode, apply it
+  const storedTheme = localStorage.getItem('theme')
+  if (!storedTheme && palette.forceDark) {
+    setTheme(DARK_MODE)
+  }
 }

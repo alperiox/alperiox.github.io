@@ -1,8 +1,10 @@
 ---
 import GlobalStyles from "@components/GlobalStyles.astro";
+import CanvasBackground from "@components/CanvasBackground.astro";
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import '@fontsource-variable/jetbrains-mono';
 import ImageWrapper from "@components/misc/ImageWrapper.astro";
 
 import {pathsEqual} from "@utils/url-utils";
@@ -12,6 +14,7 @@ import {Favicon} from "../types/config";
 import {defaultFavicons} from "../constants/icon";
 import {LIGHT_MODE, DARK_MODE, AUTO_MODE, DEFAULT_THEME} from "../constants/constants";
 import {url} from "../utils/url-utils";
+import {PALETTES, DEFAULT_PALETTE_ID} from "../constants/palettes";
 
 interface Props {
 	title: string;
@@ -102,8 +105,18 @@ const siteLang = siteConfig.lang.replace('_', '-')
 			/>
 		))}
 		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script define:vars={{DEFAULT_THEME: DEFAULT_THEME, LIGHT_MODE: LIGHT_MODE, DARK_MODE: DARK_MODE, AUTO_MODE: AUTO_MODE}}>
-			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
+		<script define:vars={{DEFAULT_THEME: DEFAULT_THEME, LIGHT_MODE: LIGHT_MODE, DARK_MODE: DARK_MODE, AUTO_MODE: AUTO_MODE, PALETTES: PALETTES, DEFAULT_PALETTE_ID: DEFAULT_PALETTE_ID}}>
+			const storedTheme = localStorage.getItem('theme');
+			const paletteId = localStorage.getItem('palette') || DEFAULT_PALETTE_ID;
+			const palette = PALETTES.find(p => p.id === paletteId);
+
+			// If no theme stored and palette requires dark mode, use dark and persist it
+			let theme = storedTheme || DEFAULT_THEME;
+			if (!storedTheme && palette && palette.forceDark) {
+				theme = DARK_MODE;
+				localStorage.setItem('theme', DARK_MODE);
+			}
+
 			switch (theme) {
 				case LIGHT_MODE:
 					document.documentElement.classList.remove('dark');
@@ -130,16 +143,21 @@ const siteLang = siteConfig.lang.replace('_', '-')
 
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"is-home": isHomePage, "enable-banner": enableBanner}]}>
-		<ConfigCarrier></ConfigCarrier>
-		<GlobalStyles>
-		<div id="banner-wrapper" class="absolute w-full">
-			<ImageWrapper id="boxtest" alt="Banner image of the blog" class:list={["object-center object-cover h-full", {"hidden": !siteConfig.banner.enable}]}
-					  src={siteConfig.banner.src}
-			>
-			</ImageWrapper>
+		<CanvasBackground />
+		<div class="relative z-[1]">
+			<ConfigCarrier></ConfigCarrier>
+			<GlobalStyles>
+			<div id="banner-wrapper" class="absolute w-full">
+				{isHomePage && (
+					<div class="hero-content">
+						<span class="hero-name">alper</span>
+						<span class="hero-sub">mathematician · researcher</span>
+					</div>
+				)}
+			</div>
+			<slot />
+			</GlobalStyles>
 		</div>
-		<slot />
-		</GlobalStyles>
 	</body>
 </html>
 <style is:global>
@@ -342,8 +360,47 @@ if (window.swup.hooks) {
 #banner-wrapper
 	top: 0
 	opacity: 1
+	&::after
+		content: ''
+		position: absolute
+		bottom: 0
+		left: 0
+		right: 0
+		height: 180px
+		background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12))
+		pointer-events: none
 .banner-closed
 	#banner-wrapper
 		top: -120px
 		opacity: 0
+</style>
+
+<style is:global>
+.hero-content {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	gap: 1rem;
+	z-index: 1;
+}
+.hero-name {
+	font-family: 'Georgia', 'Times New Roman', serif;
+	font-size: clamp(2.2rem, 5vw, 3.8rem);
+	font-weight: 400;
+	letter-spacing: 0.06em;
+	color: oklch(0.88 0.06 var(--hue));
+	text-shadow: 0 0 50px oklch(0.5 0.15 var(--hue) / 0.35);
+}
+.hero-sub {
+	font-family: 'JetBrains Mono Variable', 'Courier New', monospace;
+	font-size: clamp(0.65rem, 1.4vw, 0.85rem);
+	font-weight: 350;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: oklch(0.6 0.1 var(--hue) / 0.45);
+}
 </style>
